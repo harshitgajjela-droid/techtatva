@@ -1,0 +1,4 @@
+borrower_id,name,archetype,true_label,seasonal_pattern,trend,loan_amount,monthly_installment,loan_tenure_months,loan_start
+B001,Ravi Kumar,farmer,seasonal_stress,"Kharif harvest (Oct), Rabi harvest (Apr); lean Jun–Aug and Jan–Feb",flat,75000,1500,48,2023-01-01
+B002,Meena Devi,vendor,healthy,"Festival spikes Diwali (Oct–Nov), Holi (Mar), New Year (Jan)",positive,60000,1500,36,2023-01-01
+B003,Arjun Singh,laborer,genuine_decline,"None — income decline is structural, not seasonal",negative,50000,1500,30,2023-01-01
