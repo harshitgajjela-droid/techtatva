@@ -47,18 +47,30 @@ A financial intelligence platform designed to differentiate between **seasonal i
 ## 🚀 Quick Start & Setup
 
 ### Prerequisites
-- **Python**: 3.9 or higher
+- **Python**: 3.11 (required — scipy/prophet/statsmodels do not have wheels for Python 3.13)
 - **Node.js**: v18+ and `npm`
+- **Homebrew**: for installing Python 3.11 on macOS
 
-### 1. Installation
-
-Clone the repository and install dependencies:
+### 1. Install Python 3.11
 
 ```bash
-# Install Python backend dependencies
-pip install -r requirements.txt
+brew install python@3.11
+```
 
-# Install React frontend dependencies
+### 2. Create Virtual Environment & Install Python Dependencies
+
+```bash
+cd ~/Desktop/techtatva-main
+rm -rf .venv
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 3. Install Frontend Dependencies
+
+```bash
 cd app/frontend
 npm install
 cd ../..
@@ -68,34 +80,34 @@ cd ../..
 
 ## 💻 Running the Application
 
-### Start Full Stack (FastAPI + React Dashboard)
+Open **two terminal tabs** and run each service separately.
 
-Run the unified startup script:
+### Terminal 1 — FastAPI Backend
 
 ```bash
-chmod +x start.sh
-./start.sh
+cd ~/Desktop/techtatva-main
+source .venv/bin/activate
+python3 -m uvicorn app.api:app --host 0.0.0.0 --port 8000
 ```
 
-This starts both services simultaneously:
-- **Backend API**: [http://localhost:8000](http://localhost:8000)
-- **API Documentation**: [http://localhost:8000/docs](http://localhost:8000/docs)
-- **React Dashboard**: [http://localhost:5173](http://localhost:5173)
+Wait until you see `Application startup complete.`
 
----
+### Terminal 2 — React Frontend
 
-### Running Services Separately
-
-#### 1. FastAPI Backend
 ```bash
-uvicorn app.api:app --host 0.0.0.0 --port 8000 --reload
-```
-
-#### 2. React Vite Dashboard
-```bash
-cd app/frontend
+cd ~/Desktop/techtatva-main/app/frontend
 npm run dev
 ```
+
+Then open **[http://localhost:5173](http://localhost:5173)** in your browser.
+
+| Service | URL |
+|---------|-----|
+| React Dashboard | http://localhost:5173 |
+| Backend API | http://localhost:8000 |
+| API Docs (Swagger) | http://localhost:8000/docs |
+
+> **Note:** Do not use `--reload` with uvicorn — it causes an infinite restart loop by watching `.venv` package files.
 
 ---
 
